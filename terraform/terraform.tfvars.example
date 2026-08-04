@@ -1,0 +1,31 @@
+#############################################
+# S3 Buckets
+#############################################
+
+buckets = {
+
+  application = {
+    versioning     = true
+    force_destroy  = false
+    lifecycle_days = 365
+  }
+
+  audit = {
+    versioning     = true
+    force_destroy  = false
+    lifecycle_days = 2555
+  }
+
+  backup = {
+    versioning     = true
+    force_destroy  = false
+    lifecycle_days = 730
+  }
+
+  lambda = {
+    versioning     = true
+    force_destroy  = true
+    lifecycle_days = 90
+  }
+
+}
