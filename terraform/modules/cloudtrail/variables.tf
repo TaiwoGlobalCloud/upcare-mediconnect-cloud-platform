@@ -13,39 +13,38 @@ variable "environment" {
 }
 
 #############################################
-# CloudTrail Configuration
+# Backup Configuration
 #############################################
 
-variable "trail_name" {
-  description = "CloudTrail trail name."
+variable "backup_vault_name" {
+  description = "AWS Backup Vault name."
   type        = string
-  default     = "upcare-cloudtrail"
+  default     = "backup-vault"
 }
 
-variable "enable_log_file_validation" {
-  description = "Enable CloudTrail log file validation."
-  type        = bool
-  default     = true
-}
-
-variable "is_multi_region_trail" {
-  description = "Deploy a multi-region CloudTrail."
-  type        = bool
-  default     = true
-}
-#############################################
-# S3 Integration
-#############################################
-
-variable "s3_bucket_name" {
-  description = "S3 bucket used by CloudTrail."
+variable "backup_plan_name" {
+  description = "AWS Backup Plan name."
   type        = string
+  default     = "daily-backup-plan"
 }
+
+variable "backup_selection_name" {
+  description = "AWS Backup Selection name."
+  type        = string
+  default     = "backup-selection"
+}
+
+variable "backup_schedule" {
+  description = "Backup schedule in cron format."
+  type        = string
+  default     = "cron(0 5 * * ? *)"
+}
+
 #############################################
 # KMS Integration
 #############################################
 
 variable "kms_key_arn" {
-  description = "KMS Key ARN used by CloudTrail."
+  description = "KMS Key ARN used to encrypt the AWS Backup Vault."
   type        = string
 }

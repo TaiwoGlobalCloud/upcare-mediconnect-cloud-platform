@@ -16,14 +16,17 @@ variable "environment" {
 # Backup Configuration
 #############################################
 
-variable "backup_plan_name" {
-  description = "AWS Backup plan name."
+variable "backup_vault_name" {
+  description = "AWS Backup Vault name."
   type        = string
-  default     = "daily-backup"
+  default     = "backup-vault"
 }
 
-variable "backup_vault_name" {
-  description = "AWS Backup vault name."
+#############################################
+# KMS Integration
+#############################################
+
+variable "kms_key_arn" {
+  description = "KMS Key ARN used to encrypt the AWS Backup Vault."
   type        = string
-  default     = "primary-vault"
 }
