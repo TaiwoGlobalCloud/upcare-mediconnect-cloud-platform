@@ -1,3 +1,7 @@
+#############################################
+# AWS CloudTrail
+#############################################
+
 resource "aws_cloudtrail" "this" {
 
   name = "${local.name_prefix}-${var.trail_name}"
@@ -6,7 +10,7 @@ resource "aws_cloudtrail" "this" {
 
   kms_key_id = var.kms_key_arn
 
-  enable_logging = false
+  enable_logging = true
 
   include_global_service_events = true
 

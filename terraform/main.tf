@@ -83,17 +83,17 @@ module "kms" {
 #############################################
 
 module "cloudwatch" {
+
   source = "./modules/cloudwatch"
 
   project_name = var.project_name
   environment  = var.environment
 
   log_retention_days = var.log_retention_days
-}
 
-#############################################
-# CloudTrail Module
-#############################################
+  kms_key_arn = module.kms.key_arn
+
+}
 
 #############################################
 # CloudTrail Module
@@ -112,9 +112,8 @@ module "cloudtrail" {
 
   s3_bucket_name = module.s3.bucket_ids["audit"]
 
-  kms_key_arn = module.kms.key_arn
-
 }
+
 #############################################
 # GuardDuty Module
 #############################################
@@ -129,6 +128,7 @@ module "guardduty" {
   enable_guardduty = var.enable_guardduty
 
 }
+
 #############################################
 # Security Hub Module
 #############################################
@@ -143,6 +143,7 @@ module "security_hub" {
   enable_security_hub = var.enable_security_hub
 
 }
+
 #############################################
 # IAM Access Analyzer Module
 #############################################
@@ -157,6 +158,7 @@ module "access_analyzer" {
   analyzer_type = var.analyzer_type
 
 }
+
 #############################################
 # AWS WAF Module
 #############################################
@@ -171,6 +173,7 @@ module "waf" {
   scope = var.waf_scope
 
 }
+
 #############################################
 # Amazon ECR Module
 #############################################
@@ -210,6 +213,7 @@ module "eks" {
   private_subnet_ids = module.vpc.private_subnet_ids
 
 }
+
 #############################################
 # Amazon RDS Module
 #############################################
@@ -232,6 +236,7 @@ module "rds" {
   instance_class = var.db_instance_class
 
 }
+
 #############################################
 # Amazon ElastiCache Module
 #############################################

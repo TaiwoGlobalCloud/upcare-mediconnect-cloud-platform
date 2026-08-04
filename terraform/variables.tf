@@ -99,7 +99,7 @@ variable "log_retention_days" {
   description = "CloudWatch log retention."
 
   type    = number
-  default = 90
+  default = 365
 }
 
 #############################################
