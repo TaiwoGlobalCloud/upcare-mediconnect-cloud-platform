@@ -8,7 +8,7 @@ resource "aws_ecr_repository" "this" {
 
   name = "${local.name_prefix}-${each.value}"
 
-  image_tag_mutability = "MUTABLE"
+  image_tag_mutability = "IMMUTABLE"
 
   image_scanning_configuration {
     scan_on_push = true
@@ -16,6 +16,7 @@ resource "aws_ecr_repository" "this" {
 
   encryption_configuration {
     encryption_type = "KMS"
+    kms_key         = var.kms_key_arn
   }
 
   tags = merge(

@@ -20,3 +20,12 @@ variable "repository_names" {
   description = "List of ECR repositories."
   type        = list(string)
 }
+
+#############################################
+# KMS Integration
+#############################################
+
+variable "kms_key_arn" {
+  description = "KMS Key ARN used to encrypt Amazon ECR repositories."
+  type        = string
+}
