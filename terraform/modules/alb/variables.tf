@@ -30,3 +30,12 @@ variable "security_group_ids" {
   description = "Security Group IDs."
   type        = list(string)
 }
+
+#############################################
+# Access Logs
+#############################################
+
+variable "access_logs_bucket" {
+  description = "S3 bucket used for ALB access logs."
+  type        = string
+}

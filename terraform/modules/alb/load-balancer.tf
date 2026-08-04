@@ -11,7 +11,19 @@ resource "aws_lb" "this" {
   security_groups = var.security_group_ids
   subnets         = var.public_subnet_ids
 
-  enable_deletion_protection = false
+  #############################################
+  # Security Hardening
+  #############################################
+
+  enable_deletion_protection = true
+
+  drop_invalid_header_fields = true
+
+  access_logs {
+    bucket  = var.access_logs_bucket
+    enabled = true
+    prefix  = "alb"
+  }
 
   tags = merge(
     local.common_tags,
