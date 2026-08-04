@@ -220,17 +220,17 @@ module "eks" {
   project_name = var.project_name
   environment  = var.environment
 
-  cluster_name = var.cluster_name
-
+  cluster_name       = var.cluster_name
   kubernetes_version = var.kubernetes_version
 
   desired_size = var.desired_size
   min_size     = var.min_size
   max_size     = var.max_size
 
-  vpc_id = module.vpc.vpc_id
-
+  vpc_id             = module.vpc.vpc_id
   private_subnet_ids = module.vpc.private_subnet_ids
+
+  public_access_cidrs = var.public_access_cidrs
 
 }
 
@@ -273,5 +273,23 @@ module "elasticache" {
   security_group_id = module.security_groups.database_security_group_id
 
   node_type = var.redis_node_type
+
+}
+#############################################
+# AWS Certificate Manager (ACM) Module
+#############################################
+
+module "acm" {
+
+  source = "./modules/acm"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  domain_name = var.domain_name
+
+  subject_alternative_names = var.subject_alternative_names
+
+  validation_method = var.certificate_validation_method
 
 }

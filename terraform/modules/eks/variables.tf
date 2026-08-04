@@ -55,3 +55,15 @@ variable "max_size" {
   type    = number
   default = 4
 }
+#############################################
+# EKS API Endpoint Access
+#############################################
+
+variable "public_access_cidrs" {
+  description = "CIDR blocks allowed to access the EKS public API endpoint."
+  type        = list(string)
+
+  default = [
+    "203.0.113.0/24"
+  ]
+}

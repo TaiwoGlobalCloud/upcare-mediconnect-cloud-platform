@@ -265,3 +265,35 @@ variable "redis_node_type" {
   type        = string
   default     = "cache.t3.micro"
 }
+#############################################
+# AWS Certificate Manager (ACM)
+#############################################
+
+variable "domain_name" {
+  description = "Primary domain name for the ACM certificate."
+  type        = string
+}
+
+variable "subject_alternative_names" {
+  description = "Subject Alternative Names (SANs) for the ACM certificate."
+  type        = list(string)
+  default     = []
+}
+
+variable "certificate_validation_method" {
+  description = "ACM certificate validation method."
+  type        = string
+  default     = "DNS"
+}
+#############################################
+# Amazon EKS API Endpoint
+#############################################
+
+variable "public_access_cidrs" {
+  description = "CIDR blocks allowed to access the EKS public endpoint."
+  type        = list(string)
+
+  default = [
+    "203.0.113.0/24"
+  ]
+}
