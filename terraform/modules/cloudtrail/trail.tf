@@ -10,6 +10,8 @@ resource "aws_cloudtrail" "this" {
 
   kms_key_id = var.kms_key_arn
 
+  sns_topic_name = aws_sns_topic.cloudtrail.name
+
   enable_logging = true
 
   include_global_service_events = true
@@ -23,5 +25,4 @@ resource "aws_cloudtrail" "this" {
       Name = "${local.name_prefix}-${var.trail_name}"
     }
   )
-
 }
