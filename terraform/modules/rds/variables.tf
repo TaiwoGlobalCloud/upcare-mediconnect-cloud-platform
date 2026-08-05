@@ -51,3 +51,32 @@ variable "instance_class" {
   type        = string
   default     = "db.t3.micro"
 }
+
+#############################################
+# High Availability & Maintenance
+#############################################
+
+variable "multi_az" {
+  description = "Enable Multi-AZ deployment."
+  type        = bool
+  default     = true
+}
+
+variable "auto_minor_version_upgrade" {
+  description = "Automatically apply minor engine upgrades."
+  type        = bool
+  default     = true
+}
+
+#############################################
+# Monitoring
+#############################################
+
+variable "enabled_cloudwatch_logs_exports" {
+  description = "CloudWatch log types to export."
+  type        = list(string)
+
+  default = [
+    "postgresql"
+  ]
+}

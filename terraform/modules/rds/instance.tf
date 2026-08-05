@@ -27,9 +27,23 @@ resource "aws_db_instance" "this" {
 
   publicly_accessible = false
 
+  #############################################
+  # Security Hardening
+  #############################################
+
+  multi_az = true
+
+  auto_minor_version_upgrade = true
+
+  enabled_cloudwatch_logs_exports = [
+    "postgresql"
+  ]
+
   backup_retention_period = 7
-  skip_final_snapshot     = true
-  deletion_protection     = false
+
+  skip_final_snapshot = true
+
+  deletion_protection = false
 
   apply_immediately = true
 
