@@ -130,6 +130,8 @@ module "cloudtrail" {
 
   s3_bucket_name = module.s3.bucket_ids["audit"]
 
+  kms_key_arn = module.kms.key_arn
+
 }
 
 #############################################

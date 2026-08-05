@@ -13,20 +13,29 @@ variable "environment" {
 }
 
 #############################################
-# Backup Configuration
+# Networking
 #############################################
 
-variable "backup_vault_name" {
-  description = "AWS Backup Vault name."
+variable "vpc_id" {
+  description = "VPC ID."
   type        = string
-  default     = "backup-vault"
+}
+
+variable "public_subnet_ids" {
+  description = "Public subnet IDs."
+  type        = list(string)
+}
+
+variable "security_group_ids" {
+  description = "Security Group IDs."
+  type        = list(string)
 }
 
 #############################################
-# KMS Integration
+# Access Logs
 #############################################
 
-variable "kms_key_arn" {
-  description = "KMS Key ARN used to encrypt the AWS Backup Vault."
+variable "access_logs_bucket" {
+  description = "S3 bucket for ALB access logs."
   type        = string
 }
