@@ -79,7 +79,6 @@ module "kms" {
 }
 
 #############################################
-#############################################
 # Application Load Balancer (ALB) Module
 #############################################
 
@@ -96,7 +95,10 @@ module "alb" {
 
   access_logs_bucket = module.s3.bucket_ids["audit"]
 
+  certificate_arn = module.acm.certificate_arn
+
 }
+
 # CloudWatch Module
 #############################################
 

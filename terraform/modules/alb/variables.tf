@@ -39,3 +39,12 @@ variable "access_logs_bucket" {
   description = "S3 bucket used for ALB access logs."
   type        = string
 }
+
+#############################################
+# ACM Certificate
+#############################################
+
+variable "certificate_arn" {
+  description = "ACM Certificate ARN for HTTPS listener."
+  type        = string
+}
