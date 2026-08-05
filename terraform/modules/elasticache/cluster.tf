@@ -1,18 +1,19 @@
 #############################################
-# Redis Cluster
+# Redis Replication Group
 #############################################
 
-resource "aws_elasticache_cluster" "this" {
+resource "aws_elasticache_replication_group" "this" {
 
-  cluster_id = "${local.name_prefix}-redis"
+  replication_group_id = "${local.name_prefix}-redis"
 
-  engine = "redis"
+  description = "Redis replication group for UpCare MediConnect"
 
+  engine         = "redis"
   engine_version = "7.1"
 
   node_type = var.node_type
 
-  num_cache_nodes = 1
+  num_cache_clusters = 1
 
   parameter_group_name = "default.redis7"
 
@@ -23,6 +24,20 @@ resource "aws_elasticache_cluster" "this" {
   security_group_ids = [
     var.security_group_id
   ]
+
+  #############################################
+  # Security Hardening
+  #############################################
+
+  at_rest_encryption_enabled = true
+
+  transit_encryption_enabled = true
+
+  automatic_failover_enabled = false
+
+  snapshot_retention_limit = var.snapshot_retention_limit
+
+  snapshot_window = var.snapshot_window
 
   tags = merge(
     local.common_tags,
