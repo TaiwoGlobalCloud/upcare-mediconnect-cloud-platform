@@ -80,6 +80,7 @@ variable "enabled_cloudwatch_logs_exports" {
     "postgresql"
   ]
 }
+
 #############################################
 # Enhanced Monitoring
 #############################################
@@ -100,4 +101,13 @@ variable "performance_insights_retention_period" {
   description = "Performance Insights retention period."
   type        = number
   default     = 7
+}
+
+#############################################
+# KMS Integration
+#############################################
+
+variable "kms_key_arn" {
+  description = "Customer-managed KMS Key ARN."
+  type        = string
 }

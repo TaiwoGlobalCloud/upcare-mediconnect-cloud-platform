@@ -28,6 +28,12 @@ resource "aws_db_instance" "this" {
   publicly_accessible = false
 
   #############################################
+  # IAM Database Authentication
+  #############################################
+
+  iam_database_authentication_enabled = true
+
+  #############################################
   # Security Hardening
   #############################################
 
@@ -41,19 +47,17 @@ resource "aws_db_instance" "this" {
   #############################################
 
   monitoring_interval = var.monitoring_interval
-
   monitoring_role_arn = aws_iam_role.rds_monitoring.arn
 
-  #############################################
   #############################################
   # Performance Insights
   #############################################
 
   performance_insights_enabled          = var.performance_insights_enabled
   performance_insights_retention_period = var.performance_insights_retention_period
+  performance_insights_kms_key_id       = var.kms_key_arn
 
   #############################################
-
   # Backup & Maintenance
   #############################################
 

@@ -259,6 +259,12 @@ module "rds" {
 
   instance_class = var.db_instance_class
 
+  #############################################
+  # KMS Integration
+  #############################################
+
+  kms_key_arn = module.kms.key_arn
+
 }
 
 #############################################
