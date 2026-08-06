@@ -26,3 +26,12 @@ variable "db_password" {
   type        = string
   sensitive   = true
 }
+
+#############################################
+# KMS Integration
+#############################################
+
+variable "kms_key_arn" {
+  description = "Customer-managed KMS Key ARN."
+  type        = string
+}

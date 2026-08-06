@@ -285,6 +285,7 @@ module "elasticache" {
   node_type = var.redis_node_type
 
 }
+
 #############################################
 # AWS Certificate Manager (ACM) Module
 #############################################
@@ -301,5 +302,23 @@ module "acm" {
   subject_alternative_names = var.subject_alternative_names
 
   validation_method = var.certificate_validation_method
+
+}
+
+#############################################
+# AWS Secrets Manager Module
+#############################################
+
+module "secrets_manager" {
+
+  source = "./modules/secrets-manager"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  db_username = var.db_username
+  db_password = var.db_password
+
+  kms_key_arn = module.kms.key_arn
 
 }

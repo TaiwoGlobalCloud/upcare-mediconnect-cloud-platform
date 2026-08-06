@@ -297,3 +297,13 @@ variable "public_access_cidrs" {
     "203.0.113.0/24"
   ]
 }
+
+#############################################
+# Redis Authentication
+#############################################
+
+variable "redis_auth_token" {
+  description = "Redis AUTH token for ElastiCache."
+  type        = string
+  sensitive   = true
+}
