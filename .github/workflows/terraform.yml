@@ -1,6 +1,8 @@
 name: Terraform CI
 
 on:
+  workflow_dispatch:
+
   push:
     branches:
       - main
@@ -15,6 +17,7 @@ on:
 
 jobs:
   terraform:
+    name: Terraform Validation
 
     runs-on: ubuntu-latest
 
@@ -23,12 +26,17 @@ jobs:
         working-directory: terraform
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - uses: hashicorp/setup-terraform@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
 
-      - run: terraform fmt -check -recursive
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
 
-      - run: terraform init
+      - name: Terraform Initialize
+        run: terraform init
 
-      - run: terraform validate
+      - name: Terraform Validate
+        run: terraform validate

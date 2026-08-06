@@ -1,6 +1,8 @@
 name: Terraform Security
 
 on:
+  workflow_dispatch:
+
   push:
     branches:
       - main
@@ -15,11 +17,11 @@ on:
 
 jobs:
   checkov:
+    name: Checkov Security Scan
 
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout Repository
         uses: actions/checkout@v4
 
