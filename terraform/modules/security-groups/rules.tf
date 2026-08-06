@@ -2,6 +2,8 @@
 # ALB Ingress HTTP
 #############################################
 
+#checkov:skip=CKV_AWS_260: Port 80 is intentionally exposed to redirect HTTP traffic to HTTPS via the Application Load Balancer.
+
 resource "aws_vpc_security_group_ingress_rule" "alb_http" {
 
   security_group_id = aws_security_group.alb.id
@@ -13,7 +15,7 @@ resource "aws_vpc_security_group_ingress_rule" "alb_http" {
 
   ip_protocol = "tcp"
 
-  description = "Allow HTTP"
+  description = "Allow HTTP for HTTPS redirection"
 }
 
 #############################################
