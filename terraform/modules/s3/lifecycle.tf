@@ -10,15 +10,28 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
 
   rule {
 
-    id = "default"
-
+    id     = "default"
     status = "Enabled"
 
     filter {}
 
+    #############################################
+    # Expire Noncurrent Object Versions
+    #############################################
+
     noncurrent_version_expiration {
 
       noncurrent_days = each.value.lifecycle_days
+
+    }
+
+    #############################################
+    # Abort Incomplete Multipart Uploads
+    #############################################
+
+    abort_incomplete_multipart_upload {
+
+      days_after_initiation = 7
 
     }
 

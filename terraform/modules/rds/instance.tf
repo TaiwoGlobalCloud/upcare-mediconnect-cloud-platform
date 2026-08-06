@@ -67,7 +67,7 @@ resource "aws_db_instance" "this" {
 
   skip_final_snapshot = true
 
-  deletion_protection = false
+  deletion_protection = true
 
   #############################################
   # Tags
