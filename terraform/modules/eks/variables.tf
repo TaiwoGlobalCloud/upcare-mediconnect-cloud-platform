@@ -67,3 +67,12 @@ variable "public_access_cidrs" {
     "203.0.113.0/24"
   ]
 }
+
+#############################################
+# KMS Integration
+#############################################
+
+variable "kms_key_arn" {
+  description = "Customer-managed KMS Key ARN."
+  type        = string
+}

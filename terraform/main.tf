@@ -213,10 +213,6 @@ module "ecr" {
 
 }
 
-#############################################
-# Amazon EKS Module
-#############################################
-
 module "eks" {
 
   source = "./modules/eks"
@@ -235,6 +231,12 @@ module "eks" {
   private_subnet_ids = module.vpc.private_subnet_ids
 
   public_access_cidrs = var.public_access_cidrs
+
+  #############################################
+  # KMS Integration
+  #############################################
+
+  kms_key_arn = module.kms.key_arn
 
 }
 

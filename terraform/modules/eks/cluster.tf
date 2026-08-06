@@ -9,14 +9,44 @@ resource "aws_eks_cluster" "this" {
 
   version = var.kubernetes_version
 
+  #############################################
+  # Networking
+  #############################################
+
   vpc_config {
 
     subnet_ids = var.private_subnet_ids
 
     endpoint_private_access = true
-    endpoint_public_access  = true
+    endpoint_public_access  = false
 
-    public_access_cidrs = var.public_access_cidrs
+  }
+
+  #############################################
+  # Control Plane Logging
+  #############################################
+
+  enabled_cluster_log_types = [
+    "api",
+    "audit",
+    "authenticator",
+    "controllerManager",
+    "scheduler"
+  ]
+
+  #############################################
+  # Secrets Encryption
+  #############################################
+
+  encryption_config {
+
+    provider {
+      key_arn = var.kms_key_arn
+    }
+
+    resources = [
+      "secrets"
+    ]
 
   }
 
