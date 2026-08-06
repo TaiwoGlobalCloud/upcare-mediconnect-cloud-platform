@@ -80,3 +80,24 @@ variable "enabled_cloudwatch_logs_exports" {
     "postgresql"
   ]
 }
+#############################################
+# Enhanced Monitoring
+#############################################
+
+variable "monitoring_interval" {
+  description = "Enhanced Monitoring interval (seconds)."
+  type        = number
+  default     = 60
+}
+
+variable "performance_insights_enabled" {
+  description = "Enable RDS Performance Insights."
+  type        = bool
+  default     = true
+}
+
+variable "performance_insights_retention_period" {
+  description = "Performance Insights retention period."
+  type        = number
+  default     = 7
+}

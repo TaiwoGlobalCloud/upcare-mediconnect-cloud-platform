@@ -31,21 +31,43 @@ resource "aws_db_instance" "this" {
   # Security Hardening
   #############################################
 
-  multi_az = true
+  multi_az                   = var.multi_az
+  auto_minor_version_upgrade = var.auto_minor_version_upgrade
 
-  auto_minor_version_upgrade = true
+  enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
 
-  enabled_cloudwatch_logs_exports = [
-    "postgresql"
-  ]
+  #############################################
+  # Enhanced Monitoring
+  #############################################
+
+  monitoring_interval = var.monitoring_interval
+
+  monitoring_role_arn = aws_iam_role.rds_monitoring.arn
+
+  #############################################
+  #############################################
+  # Performance Insights
+  #############################################
+
+  performance_insights_enabled          = var.performance_insights_enabled
+  performance_insights_retention_period = var.performance_insights_retention_period
+
+  #############################################
+
+  # Backup & Maintenance
+  #############################################
 
   backup_retention_period = 7
+
+  apply_immediately = true
 
   skip_final_snapshot = true
 
   deletion_protection = false
 
-  apply_immediately = true
+  #############################################
+  # Tags
+  #############################################
 
   tags = merge(
     local.common_tags,
