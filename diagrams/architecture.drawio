@@ -1,0 +1,23 @@
+                    Internet
+                        │
+              Route 53 (Optional)
+                        │
+                 AWS WAF Web ACL
+                        │
+         Application Load Balancer (ALB)
+                        │
+              Amazon EKS Cluster
+                        │
+        ┌───────────────┴───────────────┐
+        │                               │
+   Amazon RDS                 Amazon ElastiCache
+        │                               │
+        └──────── AWS KMS Encryption ───┘
+                        │
+             AWS Secrets Manager
+                        │
+                Amazon CloudTrail
+                        │
+ GuardDuty ── Security Hub ── CloudWatch
+                        │
+          Amazon S3 (Terraform Backend)
